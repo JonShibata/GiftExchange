@@ -1,0 +1,156 @@
+exclude_lists:
+- - Marie
+  - Joey
+  - Stevie
+  - Sam
+  - Tim
+  - Annie
+- - JJ
+  - Grace
+  - Joy
+  - Mark
+- - TJ
+  - Abby
+  - Eli
+  - Hope
+history:
+  Abby:
+  - Grace
+  - Mark
+  - Joy
+  - Sam
+  - Stevie
+  - JJ
+  - Joey
+  - Tim
+  - Marie
+  Annie:
+  - NA
+  - NA
+  - NA
+  - NA
+  - NA
+  - NA
+  - JJ
+  - Eli
+  - Joy
+  Eli:
+  - NA
+  - NA
+  - NA
+  - Marie
+  - Joey
+  - Marie
+  - Sam
+  - Grace
+  - Annie
+  Grace:
+  - Stevie
+  - Sam
+  - Marie
+  - Joey
+  - Sam
+  - Tim
+  - Stevie
+  - Annie
+  - Joey
+  Hope:
+  - NA
+  - NA
+  - NA
+  - NA
+  - NA
+  - NA
+  - NA
+  - NA
+  - Tim
+  JJ:
+  - Sam
+  - Marie
+  - Stevie
+  - TJ
+  - Tim
+  - Joey
+  - Abby
+  - Sam
+  - Stevie
+  Joey:
+  - Joy
+  - Grace
+  - Mark
+  - Eli
+  - Abby
+  - Mark
+  - Joy
+  - JJ
+  - TJ
+  Joy:
+  - Joey
+  - TJ
+  - Abby
+  - Stevie
+  - Marie
+  - Sam
+  - Tim
+  - Joey
+  - Abby
+  Marie:
+  - TJ
+  - Abby
+  - JJ
+  - Grace
+  - Eli
+  - TJ
+  - Mark
+  - Joy
+  - Hope
+  Mark:
+  - NA
+  - Joey
+  - Sam
+  - Abby
+  - TJ
+  - Stevie
+  - Annie
+  - Marie
+  - Sam
+  Sam:
+  - JJ
+  - Joy
+  - TJ
+  - Mark
+  - Grace
+  - Abby
+  - Eli
+  - TJ
+  - Mark
+  Stevie:
+  - Abby
+  - JJ
+  - Grace
+  - Joy
+  - Mark
+  - Eli
+  - TJ
+  - Abby
+  - Grace
+  TJ:
+  - Marie
+  - Stevie
+  - Joey
+  - JJ
+  - Joy
+  - Grace
+  - Marie
+  - Stevie
+  - JJ
+  Tim:
+  - NA
+  - NA
+  - NA
+  - NA
+  - JJ
+  - Joy
+  - Grace
+  - Mark
+  - Eli
