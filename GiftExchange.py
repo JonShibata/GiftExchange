@@ -6,39 +6,13 @@ import yaml
 import math
 
 
-data = {
-    "exclude_lists": [["Marie", "Joey", "Stevie", "Sam", "Tim", "Annie"],
-                      ["JJ", "Grace", "Joy", "Mark"],
-                      ["TJ", "Abby", "Eli", "Hope"]],
-    "history": {
-        "Marie": ["TJ", "Abby", "JJ", "Grace", "Eli", "TJ", "Mark", "Joy", "Hope"],
-        "JJ": ["Sam", "Marie", "Stevie", "TJ", "Tim", "Joey", "Abby", "Sam", "Stevie"],
-        "Joey": ["Joy", "Grace", "Mark", "Eli", "Abby", "Mark", "Joy", "JJ", "TJ"],
-        "Grace": ["Stevie", "Sam", "Marie", "Joey", "Sam", "Tim", "Stevie", "Annie", "Joey"],
-        "TJ": ["Marie", "Stevie", "Joey", "JJ", "Joy", "Grace", "Marie", "Stevie", "JJ"],
-        "Stevie": ["Abby", "JJ", "Grace", "Joy", "Mark", "Eli", "TJ", "Abby", "Grace"],
-        "Joy": ["Joey", "TJ", "Abby", "Stevie", "Marie", "Sam", "Tim", "Joey", "Abby"],
-        "Abby": ["Grace", "Mark", "Joy", "Sam", "Stevie", "JJ", "Joey", "Tim", "Marie"],
-        "Sam": ["JJ", "Joy", "TJ", "Mark", "Grace", "Abby", "Eli", "TJ", "Mark"],
-        "Mark": ["NA", "Joey", "Sam", "Abby", "TJ", "Stevie", "Annie", "Marie", "Sam"],
-        "Eli": ["NA", "NA", "NA", "Marie", "Joey", "Marie", "Sam", "Grace", "Annie"],
-        "Tim": ["NA", "NA", "NA", "NA", "JJ", "Joy", "Grace", "Mark", "Eli"],
-        "Annie": ["NA", "NA", "NA", "NA", "NA", "NA", "JJ", "Eli", "Joy"],
-        "Hope": ["NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "Tim"]
-    }
-}
-
-
-# with open("GiftExchange_Shibata_Cousins.yaml", "r") as yaml_input:
-#     data = yaml.safe_load(yaml_input)
-
-exclude_lists = data["exclude_lists"]
-history = data["history"]
+with open("GiftExchange_Shibata_Cousins.yaml", "r") as yaml_input:
+    data = yaml.safe_load(yaml_input)
 
 
 def create_rx_dict(santa):
     person_list = []
-    for exclude_list in exclude_lists:
+    for exclude_list in data["exclude_lists"]:
         if santa not in exclude_list:
             person_list += exclude_list
 
@@ -55,13 +29,13 @@ while find_list:
     find_list = False
     picked_list = []
 
-    for person in history:
+    for person in data["history"]:
         rx_dict = create_rx_dict(person)
 
         # Adjust for previous years
-        history_len = len(history[person])
+        history_len = len(data["history"][person])
         i_year = 1
-        for rx in history[person]:
+        for rx in data["history"][person]:
             if rx in rx_dict:
                 rx_dict[rx] *= math.log(history_len + 1 - i_year, history_len)
             i_year += 1
@@ -87,6 +61,20 @@ while find_list:
 
 print(picked_list)
 print(find_loops)
+
+
+for i_list, person in enumerate(data["history"]):
+    data["history"][person].append(picked_list[i_list])
+
+i_list = 0
+with open("output.csv", "w") as output:
+    output.write("Family,Santa,Person\n")
+    for list in data["exclude_lists"]:
+        output.write("\n")
+        i_list += 1
+        for person in list:
+            output.write("{},{},{}\n".format(i_list, person, data["history"][person][-1]))
+
 
 with open("GiftExchange_Shibata_Cousins.yaml", "w") as yaml_output:
     yaml.dump(data, yaml_output)

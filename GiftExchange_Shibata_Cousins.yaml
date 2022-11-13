@@ -24,6 +24,7 @@ history:
   - Joey
   - Tim
   - Marie
+  - Mark
   Annie:
   - NA
   - NA
@@ -34,6 +35,7 @@ history:
   - JJ
   - Eli
   - Joy
+  - TJ
   Eli:
   - NA
   - NA
@@ -44,6 +46,7 @@ history:
   - Sam
   - Grace
   - Annie
+  - Sam
   Grace:
   - Stevie
   - Sam
@@ -54,6 +57,7 @@ history:
   - Stevie
   - Annie
   - Joey
+  - Marie
   Hope:
   - NA
   - NA
@@ -64,6 +68,7 @@ history:
   - NA
   - NA
   - Tim
+  - Stevie
   JJ:
   - Sam
   - Marie
@@ -74,6 +79,7 @@ history:
   - Abby
   - Sam
   - Stevie
+  - Tim
   Joey:
   - Joy
   - Grace
@@ -84,6 +90,7 @@ history:
   - Joy
   - JJ
   - TJ
+  - Grace
   Joy:
   - Joey
   - TJ
@@ -94,6 +101,7 @@ history:
   - Tim
   - Joey
   - Abby
+  - Annie
   Marie:
   - TJ
   - Abby
@@ -104,6 +112,7 @@ history:
   - Mark
   - Joy
   - Hope
+  - Abby
   Mark:
   - NA
   - Joey
@@ -114,6 +123,7 @@ history:
   - Annie
   - Marie
   - Sam
+  - Eli
   Sam:
   - JJ
   - Joy
@@ -124,6 +134,7 @@ history:
   - Eli
   - TJ
   - Mark
+  - Joy
   Stevie:
   - Abby
   - JJ
@@ -134,6 +145,7 @@ history:
   - TJ
   - Abby
   - Grace
+  - Hope
   TJ:
   - Marie
   - Stevie
@@ -144,6 +156,7 @@ history:
   - Marie
   - Stevie
   - JJ
+  - Joey
   Tim:
   - NA
   - NA
@@ -154,3 +167,4 @@ history:
   - Grace
   - Mark
   - Eli
+  - JJ
