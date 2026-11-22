@@ -14,41 +14,28 @@ exclude_lists:
   - Lucy
 history:
   Alice:
-  - Marie
-  - Annie
+  - John
   Annie:
-  - Lucy
-  - Alice
+  - Philomena
   Ben:
-  - Sam
-  - Joey
+  - Tim
   Ella:
-  - Annie
-  - Lucy
+  - Sam
   Joey:
-  - Philomena
-  - Philomena
+  - Peter
   John:
   - Stevie
-  - Tim
   Lucy:
-  - Ella
-  - Sam
+  - Annie
   Marie:
-  - John
-  - Ella
-  Peter:
-  - Tim
-  - Marie
-  Philomena:
-  - Joey
-  - Stevie
-  Sam:
   - Alice
-  - Peter
+  Peter:
+  - Joey
+  Philomena:
+  - Marie
+  Sam:
+  - Ben
   Stevie:
-  - Ben
-  - Ben
+  - Lucy
   Tim:
-  - Peter
-  - John
+  - Ella

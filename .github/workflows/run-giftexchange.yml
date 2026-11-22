@@ -3,8 +3,8 @@ name: Run Gift Exchange
 on:
   workflow_dispatch:
   schedule:
-    # Run on the first of every month at 09:00 UTC
-    - cron: "0 9 1 * *"
+    # Run once a year on October 1st at 09:00 UTC
+    - cron: "0 9 1 10 *"
 
 jobs:
   run:
