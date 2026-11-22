@@ -1,0 +1,37 @@
+name: Run Gift Exchange
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run on the first of every month at 09:00 UTC
+    - cron: "0 9 1 * *"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Run GiftExchange script
+        run: python GiftExchange.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          # Only commit and push if something changed (new HTML output or
+          # updated YAML history). Otherwise skip to avoid empty commits.
+          if ! git diff --cached --quiet; then
+            git commit -m "Run Gift Exchange script and update outputs"
+            git push
+          fi

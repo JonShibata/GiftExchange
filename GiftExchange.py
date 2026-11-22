@@ -5,8 +5,13 @@ import random
 import yaml
 import math
 
+family_switch = 1
+if family_switch == 0:
+    family = 'Shibata'
+else:
+    family = 'Meinhart'
 
-with open("GiftExchange_Shibata_Cousins.yaml", "r") as yaml_input:
+with open(f"GiftExchange_{family}_Cousins.yaml", "r") as yaml_input:
     data = yaml.safe_load(yaml_input)
 
 
@@ -33,12 +38,18 @@ while find_list:
         rx_dict = create_rx_dict(person)
 
         # Adjust for previous years
-        history_len = len(data["history"][person])
+        history = data["history"][person] if data["history"][person] else {}
+
+        history_len = len(history)
         i_year = 1
-        for rx in data["history"][person]:
-            if rx in rx_dict:
-                rx_dict[rx] *= math.log(history_len + 1 - i_year, history_len)
-            i_year += 1
+
+        # Weight assignments based on history (skip when there is only a
+        # single year of history, since log base 1 is undefined).
+        if history_len > 1:
+            for rx in history:
+                if rx in rx_dict:
+                    rx_dict[rx] *= math.log(history_len + 1 - i_year, history_len)
+                i_year += 1
 
         # Apply random adjustment
         for rx in rx_dict:
@@ -66,15 +77,54 @@ print(find_loops)
 for i_list, person in enumerate(data["history"]):
     data["history"][person].append(picked_list[i_list])
 
+# Highlight-style background colors used for each family group (the value in
+# the first column). All rows sharing the same first-column value get the
+# same background color; colors cycle if there are more families than colors.
+family_colors = ["lightgreen", "lightblue", "#FFCC99"]  # light green, light blue, light orange
+
+html = []
+html.append("<!DOCTYPE html>")
+html.append("<html lang=\"en\">")
+html.append("<head>")
+html.append("<meta charset=\"UTF-8\">")
+html.append(f"<title>Gift Exchange - {family}</title>")
+html.append("<style>")
+html.append("body { font-family: Arial, sans-serif; margin: 2em; }")
+html.append("h2 { font-family: Arial, sans-serif; }")
+html.append("table { border-collapse: collapse; margin-top: 1em; }")
+html.append("th, td { border: 1px solid #999; padding: 6px 12px; text-align: left; }")
+html.append("th { background: #444; color: #fff; }")
+html.append("tr.blank td { height: 14px; border: none; padding: 0; }")
+html.append("</style>")
+html.append("</head>")
+html.append("<body>")
+html.append(f"<h2>Gift Exchange - {family}</h2>")
+html.append("<table>")
+html.append("<tr><th>Family</th><th>Santa</th><th>Person</th></tr>")
+html.append("<tr class=\"blank\"><td colspan=\"3\"></td></tr>")
+
+family_color_map = {}
+color_index = 0
 i_list = 0
-with open("output.csv", "w") as output:
-    output.write("Family,Santa,Person\n")
-    for list in data["exclude_lists"]:
-        output.write("\n")
-        i_list += 1
-        for person in list:
-            output.write("{},{},{}\n".format(i_list, person, data["history"][person][-1]))
+for exclude_group in data["exclude_lists"]:
+    i_list += 1
+    if i_list not in family_color_map:
+        family_color_map[i_list] = family_colors[color_index % len(family_colors)]
+        color_index += 1
+    color = family_color_map[i_list]
+    for person in exclude_group:
+        html.append(f"<tr style=\"background-color: {color};\">")
+        html.append(f"<td>{i_list}</td><td>{person}</td>"
+                    f"<td>{data['history'][person][-1]}</td></tr>")
+    html.append("<tr class=\"blank\"><td colspan=\"3\"></td></tr>")
+
+html.append("</table>")
+html.append("</body>")
+html.append("</html>")
+
+with open(f"output_{family}.html", "w") as output:
+    output.write("\n".join(html))
 
 
-with open("GiftExchange_Shibata_Cousins.yaml", "w") as yaml_output:
+with open(f"GiftExchange_{family}_Cousins.yaml", "w") as yaml_output:
     yaml.dump(data, yaml_output)

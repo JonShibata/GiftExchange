@@ -1,0 +1,54 @@
+exclude_lists:
+- - Marie
+  - Joey
+  - Stevie
+  - Sam
+  - Tim
+  - Annie
+- - Ella
+  - John
+  - Ben
+  - Peter
+  - Philomena
+- - Alice
+  - Lucy
+history:
+  Alice:
+  - Marie
+  - Annie
+  Annie:
+  - Lucy
+  - Alice
+  Ben:
+  - Sam
+  - Joey
+  Ella:
+  - Annie
+  - Lucy
+  Joey:
+  - Philomena
+  - Philomena
+  John:
+  - Stevie
+  - Tim
+  Lucy:
+  - Ella
+  - Sam
+  Marie:
+  - John
+  - Ella
+  Peter:
+  - Tim
+  - Marie
+  Philomena:
+  - Joey
+  - Stevie
+  Sam:
+  - Alice
+  - Peter
+  Stevie:
+  - Ben
+  - Ben
+  Tim:
+  - Peter
+  - John
